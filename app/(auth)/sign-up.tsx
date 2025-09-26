@@ -10,7 +10,7 @@ const SignUp = () => {
 
   const submit = async () => {
     if (!form.name || !form.email || !form.password) {
-      Alert.alert("Error", "Please enter valid details");
+      return Alert.alert("Error", "Please enter valid details");
     }
 
     setIsSubmitting(true);
@@ -18,7 +18,7 @@ const SignUp = () => {
     try {
       //call appwrite sign up function
 
-      Alert.alert("Success", "User signed in successfully");
+      Alert.alert("Success", "User signed up successfully");
       router.replace("/");
     } catch (error) {
       Alert.alert("Error", error.message);
