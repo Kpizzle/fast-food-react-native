@@ -31,8 +31,8 @@ export default function _layout() {
             className='self-center size-48 absolute -bottom-16 z-10'
           />
         </View>
+        <Slot />
       </ScrollView>
-      <Slot />
     </KeyboardAvoidingView>
   );
 }
