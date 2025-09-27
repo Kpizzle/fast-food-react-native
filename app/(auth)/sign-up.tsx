@@ -24,7 +24,7 @@ const SignUp = () => {
       await createUser({ name, email, password });
       router.replace("/");
     } catch (error) {
-      Alert.alert("Error", error.message);
+      Alert.alert("Error Failed to create user: ", error.message);
     } finally {
       setIsSubmitting(false);
     }

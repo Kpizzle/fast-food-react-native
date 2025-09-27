@@ -1,5 +1,6 @@
 import CartButton from "@/components/CartButton";
 import { images, offers } from "@/constants";
+import { useAuthStore } from "@/store/auth.store";
 import cn from "clsx";
 import { Fragment } from "react";
 import {
@@ -13,21 +14,23 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
+  const { user } = useAuthStore();
+
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className='flex-1 bg-white'>
       <FlatList
         ListHeaderComponent={() => (
-          <View className="flex-between flex-row w-full my-5">
-            <View className="flex-start">
-              <Text className="small-bold text-primary">Deliver To</Text>
-              <TouchableOpacity className="flex-center flex-row gap-x-1 mt-">
-                <Text className="paragraph-bold text-dark-100">
+          <View className='flex-between flex-row w-full my-5'>
+            <View className='flex-start'>
+              <Text className='small-bold text-primary'>Deliver To</Text>
+              <TouchableOpacity className='flex-center flex-row gap-x-1 mt-'>
+                <Text className='paragraph-bold text-dark-100'>
                   Hasting, UK
                 </Text>
                 <Image
                   source={images.arrowDown}
-                  className="size-3"
-                  resizeMode="contain"
+                  className='size-3'
+                  resizeMode='contain'
                 />
               </TouchableOpacity>
             </View>
@@ -45,8 +48,7 @@ export default function Index() {
                   "offer-card",
                   isEven ? "flex-row-reverse" : "flex-row"
                 )}
-                style={{ backgroundColor: item.color }}
-              >
+                style={{ backgroundColor: item.color }}>
                 {({ pressed }) => (
                   <Fragment>
                     <View className={"h-full w-1/2"}>
@@ -60,16 +62,15 @@ export default function Index() {
                       className={cn(
                         "offer-card__info",
                         isEven ? "pl-10" : "pr-10"
-                      )}
-                    >
-                      <Text className="h1-bold text-white leading-tight">
+                      )}>
+                      <Text className='h1-bold text-white leading-tight'>
                         {item.title}
                       </Text>
                       <Image
                         source={images.arrowRight}
-                        className="size-10"
-                        resizeMode="contain"
-                        tintColor="#ffffff"
+                        className='size-10'
+                        resizeMode='contain'
+                        tintColor='#ffffff'
                       />
                     </View>
                   </Fragment>
@@ -78,7 +79,7 @@ export default function Index() {
             </View>
           );
         }}
-        contentContainerClassName="pb-28 px-5"
+        contentContainerClassName='pb-28 px-5'
       />
     </SafeAreaView>
   );
