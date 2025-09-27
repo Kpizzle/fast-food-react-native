@@ -1,11 +1,11 @@
+import seed from "@/lib/seed";
 import React from "react";
-import { Text, View } from "react-native";
+import { Button } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const search = () => {
   return (
-    <View>
-      <Text>search</Text>
-    </View>
+
   );
 };
 
