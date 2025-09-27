@@ -10,7 +10,6 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
-      // "bundleIdentifier": "com.redfoxcode.foodapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,6 +35,14 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "foodapp",
+          "organization": "redfoxcode"
         }
       ]
     ],

@@ -1,7 +1,9 @@
 import { images } from "@/constants";
+import { Sentry } from '@sentry/react-native';
 import { Slot } from "expo-router";
 import React from "react";
 import {
+  Button,
   Dimensions,
   Image,
   ImageBackground,

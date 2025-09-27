@@ -1,9 +1,10 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { signIn } from "@/lib/appwrite";
+import * as Sentry from "@sentry/react-native";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Button, Text, View } from "react-native";
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,7 +24,12 @@ const SignIn = () => {
       await signIn({ email, password });
       router.replace("/");
     } catch (error) {
-      Alert.alert("Error", error.message);
+      if (error instanceof Error) {
+        Alert.alert("Error", error.message);
+      } else {
+        console.log("Unknown error", error);
+      }
+      Sentry.captureEvent(error!);
     } finally {
       setIsSubmitting(false);
     }
@@ -47,6 +53,13 @@ const SignIn = () => {
         label='Password'
         secureTextEntry={true}
       />
+      <Button
+        title='Try!'
+        onPress={() => {
+          Sentry.captureException(new Error("Debugging"));
+        }}
+      />
+
       <CustomButton title='Sign In' isLoading={isSubmitting} onPress={submit} />
       <View className='flex justify-center mt-5 flex-row gap-2'>
         <Text className='base-regular text-gray-100'>
