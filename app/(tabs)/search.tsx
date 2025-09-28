@@ -1,11 +1,13 @@
 import CartButton from "@/components/CartButton";
+import MenuCard from "@/components/MenuCard";
 import { getCategories, getMenu } from "@/lib/appwrite";
 import useAppwrite from "@/lib/useAppWrite";
+import { MenuItem } from "@/type";
+import cn from "clsx";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect } from "react";
 import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import cn from 'clsx'
 
 const Search = () => {
   const { category, query } = useLocalSearchParams<{
@@ -43,8 +45,12 @@ const Search = () => {
         renderItem={({ item, index }) => {
           const isFirstRightCol = index % 2 === 0;
           return (
-            <View className={cn('flex-1 max-w=[48%]', !isFirstRightCol ? 'mt-10': 'mt-0')}>
-              <Text>Menu Card</Text>
+            <View
+              className={cn(
+                "flex-1 max-w=[48%]",
+                !isFirstRightCol ? "mt-10" : "mt-0"
+              )}>
+              <MenuCard item={item as unknown as MenuItem} />
             </View>
           );
         }}
