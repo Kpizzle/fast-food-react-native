@@ -5,6 +5,7 @@ import { useLocalSearchParams } from "expo-router";
 import React, { useEffect } from "react";
 import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import cn from 'clsx'
 
 const Search = () => {
   const { category, query } = useLocalSearchParams<{
@@ -40,8 +41,9 @@ const Search = () => {
         columnWrapperClassName='gap-7'
         contentContainerClassName='gap-7 px-5 pb-32'
         renderItem={({ item, index }) => {
+          const isFirstRightCol = index % 2 === 0;
           return (
-            <View className='flex-1 max-w=[48%'>
+            <View className={cn('flex-1 max-w=[48%]', !isFirstRightCol ? 'mt-10': 'mt-0')}>
               <Text>Menu Card</Text>
             </View>
           );
