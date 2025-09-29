@@ -1,5 +1,7 @@
 import CartButton from "@/components/CartButton";
+import Filter from "@/components/Filter";
 import MenuCard from "@/components/MenuCard";
+import SearchBar from "@/components/SearchBar";
 import { getCategories, getMenu } from "@/lib/appwrite";
 import useAppwrite from "@/lib/useAppWrite";
 import { MenuItem } from "@/type";
@@ -14,12 +16,13 @@ const Search = () => {
     query: string;
     category: string;
   }>();
+
   const { data, refetch, loading } = useAppwrite({
     fn: getMenu,
     params: {
       category,
       query,
-      limit: "6",
+      limit: 6,
     },
   });
   const { data: categories } = useAppwrite({
@@ -31,8 +34,8 @@ const Search = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, query]);
 
-  console.log(JSON.stringify(data, null, 2));
-  console.log(JSON.stringify(categories, null, 2));
+  //console.log(JSON.stringify(data, null, 2));
+  //console.log("category collection", JSON.stringify(categories, null, 2));
 
   return (
     <SafeAreaView className='bg-white, h-full'>
@@ -67,8 +70,8 @@ const Search = () => {
               </View>
               <CartButton />
             </View>
-            <Text>Search Input</Text>
-            <Text>Filter</Text>
+            <SearchBar />
+            <Filter categories={categories!} />
           </View>
         )}
         ListEmptyComponent={() => !loading && <Text>No Results</Text>}
